@@ -1,0 +1,100 @@
+function legendaryFarming(input) {
+    input = input.toLowerCase();
+    let line = input.split(` `);
+    let materials = {
+        fragments: 0,
+        shards: 0,
+        motes: 0
+    };
+    for (let a = 0; a < line.length; a += 2) {
+        let quantity = Number(line[a]);
+        let matirialType = line[a + 1];
+        if (!materials.hasOwnProperty(matirialType)) {
+            materials[matirialType] = quantity;
+        } else {
+            let moreMatirial = materials[matirialType];
+            moreMatirial += quantity;
+            materials[matirialType] = moreMatirial;
+        }
+        if (materials.motes >= 250 || materials.fragments >= 250 || materials.shards >= 250) {
+            break;
+        }
+    }
+    if (materials.fragments >= 250) {
+        console.log("Valanyr obtained!");
+        materials.fragments = Math.abs(materials.fragments - 250);
+        let keyMaterials = Object.keys(materials);
+        let mainMaterials = {};
+        for (let key of keyMaterials) {
+            if (key === "fragments" || key === "motes" || key === "shards") {
+                mainMaterials[key] = materials[key];
+                delete materials[key];
+            }
+        }
+        let sortMainMaterials = Object.entries(mainMaterials);
+        sortMainMaterials.sort((a, b) => {
+            let argA = a[1];
+            let argB = b[1];
+            return argB - argA || a[0].localeCompare(b[0]);
+        })
+            .forEach(element => {
+                console.log(`${element[0]}: ${element[1]}`);
+            });
+        let sorted = Object.entries(materials);
+        sorted.sort((a, b) => a[0].localeCompare(b[0]))
+            .forEach(element => {
+                console.log(`${element[0]}: ${element[1]}`);
+            });
+
+    } else if (materials.motes >= 250) {
+        console.log("Dragonwrath obtained!");
+        materials.motes = Math.abs(materials.motes - 250);
+        let keyMaterials = Object.keys(materials);
+        let mainMaterials = {};
+        for (let key of keyMaterials) {
+            if (key === "fragments" || key === "motes" || key === "shards") {
+                mainMaterials[key] = materials[key];
+                delete materials[key];
+            }
+        }
+        let sortMainMaterials = Object.entries(mainMaterials);
+        sortMainMaterials.sort((a, b) => {
+            let argA = a[1];
+            let argB = b[1];
+            return argB - argA || a[0].localeCompare(b[0]);
+        })
+            .forEach(element => {
+                console.log(`${element[0]}: ${element[1]}`);
+            });
+        let sorted = Object.entries(materials);
+        sorted.sort((a, b) => a[0].localeCompare(b[0]))
+            .forEach(element => {
+                console.log(`${element[0]}: ${element[1]}`);
+            });
+    } else if (materials.shards >= 250) {
+        console.log("Shadowmourne obtained!");
+        materials.shards = Math.abs(materials.shards - 250);
+        let keyMaterials = Object.keys(materials);
+        let mainMaterials = {};
+        for (let key of keyMaterials) {
+            if (key === "fragments" || key === "motes" || key === "shards") {
+                mainMaterials[key] = materials[key];
+                delete materials[key];
+            }
+        }
+        let sortMainMaterials = Object.entries(mainMaterials);
+        sortMainMaterials.sort((a, b) => {
+            let argA = a[1];
+            let argB = b[1];
+            return argB - argA || a[0].localeCompare(b[0]);
+        })
+            .forEach(element => {
+                console.log(`${element[0]}: ${element[1]}`);
+            });
+        let sorted = Object.entries(materials);
+        sorted.sort((a, b) => a[0].localeCompare(b[0]))
+            .forEach(element => {
+                console.log(`${element[0]}: ${element[1]}`);
+            });
+    }
+}
